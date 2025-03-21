@@ -1,6 +1,5 @@
-Here’s the `README.md` in a properly formatted Markdown block that you can copy and paste directly into your `my-web-app/` directory. It’s ready to use with your current setup.
+Here's the properly formatted content for your README.md file:
 
-```markdown
 # My Web App Helm Chart
 
 This Helm chart deploys a web application with two independent services (`app1` and `app2`) on an AWS EKS cluster, using the AWS Load Balancer Controller to manage an Application Load Balancer (ALB). The Ingress routes traffic to different paths (`/app1` and `/app2`) under a single domain.
@@ -12,7 +11,7 @@ This Helm chart deploys a web application with two independent services (`app1` 
 - **AWS Load Balancer Controller**: Installed in `kube-system` with `IngressClass: alb`.
 - **Namespace**: `dev` created (`kubectl create namespace dev`).
 - **ACM Certificate**: For `dev.myapp.com` (replace with your domain and ARN).
-- **IAM Role**: Attached to the controller’s service account (`aws-load-balancer-controller`).
+- **IAM Role**: Attached to the controller's service account (`aws-load-balancer-controller`).
 
 ## Chart Structure
 
@@ -138,14 +137,3 @@ helm uninstall my-web-dev --namespace dev
 - **Scaling**: Adjust `replicas` in `values-dev.yaml` for each app.
 - **Customization**: Modify `image.repository` or add health checks in `deployment-*.yaml`.
 - **EKS Setup**: Ensure the cluster (`dev-cluster`) and controller are configured as per prior steps.
-```
-
----
-
-## **Instructions**
-1. Copy this entire block.
-2. Paste it into a file named `README.md` in your `my-web-app/` directory.
-3. Replace `<your-account-id>` and `<dev-cert-id>` with your actual AWS account ID and ACM certificate ARN (e.g., from your AWS Console).
-4. Save and commit to your repository.
-
-This is formatted for easy copy-paste and includes all necessary details. Let me know if you want to add more (e.g., setup steps for the cluster) or adjust anything!
