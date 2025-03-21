@@ -1,0 +1,17 @@
+replicas: 2
+image:
+  repository: nginx
+  tag: latest
+service:
+  type: ClusterIP
+  port: 80
+resources:
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+  limits:
+    cpu: "400m"
+    memory: "512Mi"
+ingress:
+  host: "staging.myapp.com"
+  certificateArn: "arn:aws:acm:region:account:certificate/staging-cert-id"

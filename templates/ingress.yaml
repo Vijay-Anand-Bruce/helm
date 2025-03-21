@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-web-ingress
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/certificate-arn: {{ .Values.ingress.certificateArn }}
+spec:
+  ingressClassName: alb
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Release.Name }}-app1-service
+            port:
+              number: {{ .Values.app1.service.port }}
+      - path: /batman
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Release.Name }}-app2-service
+            port:
+              number: {{ .Values.app2.service.port }}

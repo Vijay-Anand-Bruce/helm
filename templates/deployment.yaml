@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-app1
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.app1.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-app1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-app1
+    spec:
+      containers:
+      - name: app1
+        image: "{{ .Values.app1.image.repository }}:{{ .Values.app1.image.tag }}"
+        ports:
+        - containerPort: {{ .Values.app1.service.port }}
+        resources:
+          requests:
+            cpu: {{ .Values.app1.resources.requests.cpu }}
+            memory: {{ .Values.app1.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.app1.resources.limits.cpu }}
+            memory: {{ .Values.app1.resources.limits.memory }}

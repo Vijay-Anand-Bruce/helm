@@ -1,0 +1,17 @@
+replicas: 3
+image:
+  repository: nginx
+  tag: latest
+service:
+  type: ClusterIP
+  port: 80
+resources:
+  requests:
+    cpu: "300m"
+    memory: "512Mi"
+  limits:
+    cpu: "600m"
+    memory: "1024Mi"
+ingress:
+  host: "myapp.com"
+  certificateArn: "arn:aws:acm:region:account:certificate/prod-cert-id"
